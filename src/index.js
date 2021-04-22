@@ -16,14 +16,21 @@ const countModifier = (count = 0, action) => {
   }
 };
 
+const onChange = () => {
+  number.innerText = countStore.getState();
+};
+
 const countStore = createStore(countModifier);
 
-// reducer(countModifier)에 메시지 보내는 방법(action)
-countStore.dispatch({ type: "add" });
-countStore.dispatch({ type: "add" });
-countStore.dispatch({ type: "add" });
-countStore.dispatch({ type: "add" });
-countStore.dispatch({ type: "add" });
-countStore.dispatch({ type: "minus" });
+//subscribe(): store 안에 있는 변화들을 알려줌, store에 변화가 있을 때마다 함수 호출됨
+countStore.subscribe(onChange);
 
-console.log(countStore.getState());
+const handleAdd = () => {
+  countStore.dispatch({ type: "add" });
+};
+const handleMinus = () => {
+  countStore.dispatch({ type: "minus" });
+};
+
+add.addEventListener("click", handleAdd);
+minus.addEventListener("click", handleMinus);
