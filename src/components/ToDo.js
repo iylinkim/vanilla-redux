@@ -12,7 +12,11 @@ const ToDo = ({ text, onBtnClick, id }) => {
   );
 };
 
+// const mapStateToProps = (state) => {
+//   console.log(state)
+// }
 const mapDispatchToProps = (dispatch, ownProps) => {
+
   return {
     onBtnClick: () => dispatch(remove(ownProps.id)),
   };
